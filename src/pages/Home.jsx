@@ -65,11 +65,11 @@ function Home() {
   const features = [
     {
       icon: Volume2,
-      title: "Concert-Grade Sound",
-      desc: "Premium, high-fidelity sound rigs (QSC, L-Acoustics) calibrated for rich bass and crystal-clear vocals in any venue size.",
+      title: "Premium Barat DJ Setup",
+      desc: "Live mobile roadshow sound truck with professional DJ mixing, energetic live dhol players, and synchronized mobile truss lighting for a grand procession.",
       color: "var(--accent-cyan)",
-      image: "/wedding_dj.png",
-      filter: "Backline"
+      image: "/dj_barat_procession.jpg",
+      filter: "Barat"
     },
     {
       icon: Sparkles,
@@ -86,7 +86,7 @@ function Home() {
       color: "var(--accent-purple)",
       image: "/live_mixing_feature.jpg",
       objectPosition: "right center",
-      filter: "Barat"
+      filter: "Backline"
     }
   ];
 
