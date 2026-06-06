@@ -37,7 +37,7 @@ function Footer() {
             marginBottom: '20px',
             textShadow: 'var(--text-glow)'
           }}>
-            "Enjoy Your Precious Moment With Us"
+            "Celebrates Yours Precious Moment With Us"
           </p>
           <div style={{ display: 'flex', gap: '12px' }}>
             <a href="https://www.instagram.com/djmonty_events_indore?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" className="social-icon" aria-label="Instagram"><Instagram size={18} /></a>

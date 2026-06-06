@@ -4,7 +4,7 @@ import { Camera, Music, Play, Layers } from 'lucide-react';
 function Gallery() {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const categories = ['All', 'Barat', 'Wedding', 'Couple Entry', 'Backline', 'Wintage Car', 'Punjabi Dhol'];
+  const categories = ['All', 'Barat', 'Wedding', 'Couple Entry', 'Backline', 'Vintage Car', 'Punjabi Dhol'];
 
   const galleryItems = [
     // Barat
@@ -31,13 +31,34 @@ function Gallery() {
       desc: "Standard pro backline with Pioneer CDJ-3000 decks, DJM-V10 mixer, and high-fidelity stage monitors.",
       image: "/dj_deck_hero.jpg"
     },
-    // Wintage Car
+    // Vintage Car
     {
       id: 4,
-      title: "Retro Vintage Car Procession",
-      category: "Wintage Car",
-      desc: "Soundtrack projection for vintage car arrival parade, featuring custom theme tracks and wireless audio synchronization.",
-      image: "/wedding_dj.png"
+      title: "Royal Vintage Rolls Royce",
+      category: "Vintage Car",
+      desc: "Classic white vintage Rolls Royce car decorated beautifully for weddings and royal couple entry processions.",
+      image: "/vintage_car_1.jpg"
+    },
+    {
+      id: 14,
+      title: "Luxury Vintage Red Convertible",
+      category: "Vintage Car",
+      desc: "Stunning vintage red convertible car on display for guest photo-ops and grand sangeet entrances.",
+      image: "/vintage_car_2.jpg"
+    },
+    {
+      id: 15,
+      title: "Classic Red Car Hotel Entry",
+      category: "Vintage Car",
+      desc: "Elegant red vintage car styled for the groom's entry at premium hotel venues.",
+      image: "/vintage_car_3.jpg"
+    },
+    {
+      id: 16,
+      title: "Elegant White Rolls Royce Parade",
+      category: "Vintage Car",
+      desc: "White vintage Rolls Royce ready for the royal baraat parade.",
+      image: "/vintage_car_4.jpg"
     },
     // Punjabi Dhol
     {
@@ -140,7 +161,7 @@ function Gallery() {
             marginTop: '15px',
             textShadow: '0 0 10px rgba(142, 45, 226, 0.3)'
           }}>
-            "Enjoy Your Precious Moment With Us"
+            "Celebrates Yours Precious Moment With Us"
           </p>
         </div>
 
@@ -182,87 +203,116 @@ function Gallery() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '30px'
         }}>
-          {filteredItems.map(item => (
-            <div key={item.id} className="glass-card gallery-item" style={{
-              overflow: 'hidden',
-              borderRadius: '20px',
-              aspectRatio: '16/9',
-              position: 'relative',
-              cursor: 'default'
-            }}>
-              {/* Image */}
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  display: 'block',
-                  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-                className="gallery-img"
-              />
-              
-              {/* Dark Overlay gradient */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: 'linear-gradient(to top, rgba(8, 6, 18, 0.95) 0%, rgba(8, 6, 18, 0.4) 50%, rgba(8, 6, 18, 0.1) 100%)',
-                zIndex: 1
-              }}></div>
+          {filteredItems.map(item => {
+            const isVintageCar = item.category === 'Vintage Car';
+            
+            if (isVintageCar) {
+              return (
+                <div key={item.id} style={{
+                  overflow: 'hidden',
+                  borderRadius: '20px',
+                  position: 'relative',
+                  border: '1px solid var(--glass-border)',
+                  background: 'var(--glass-bg)',
+                  boxShadow: 'var(--glass-shadow)',
+                  height: 'fit-content'
+                }}>
+                  {/* Image */}
+                  <img 
+                    src={item.image} 
+                    alt={item.title || "Vintage Car"} 
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block'
+                    }}
+                  />
+                </div>
+              );
+            }
 
-              {/* Badges / Floating Info */}
-              <span className="badge" style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                background: 'rgba(8, 6, 18, 0.75)',
-                backdropFilter: 'var(--glass-blur)',
-                border: '1px solid var(--glass-border)',
-                color: 'var(--accent-cyan)',
-                zIndex: 2
+            return (
+              <div key={item.id} className="glass-card gallery-item" style={{
+                overflow: 'hidden',
+                borderRadius: '20px',
+                aspectRatio: '16/9',
+                position: 'relative',
+                cursor: 'default'
               }}>
-                {item.subcategory ? `${item.category} / ${item.subcategory}` : item.category}
-              </span>
+                {/* Image */}
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  className="gallery-img"
+                />
+                
+                {/* Dark Overlay gradient */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to top, rgba(8, 6, 18, 0.95) 0%, rgba(8, 6, 18, 0.4) 50%, rgba(8, 6, 18, 0.1) 100%)',
+                  zIndex: 1
+                }}></div>
 
-              {/* Details Overlay (animated from bottom) */}
-              <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '20px 20px',
-                zIndex: 2,
-                transform: 'translateY(10px)',
-                transition: 'var(--transition-smooth)'
-              }} className="gallery-details">
-                <h3 style={{
-                  color: '#fff',
-                  fontSize: '1.2rem',
-                  fontFamily: 'var(--font-title)',
-                  marginBottom: '6px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
+                {/* Badges / Floating Info */}
+                <span className="badge" style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  background: 'rgba(8, 6, 18, 0.75)',
+                  backdropFilter: 'var(--glass-blur)',
+                  border: '1px solid var(--glass-border)',
+                  color: 'var(--accent-cyan)',
+                  zIndex: 2
                 }}>
-                  <Camera size={18} className="glow-cyan" style={{ color: 'var(--accent-cyan)' }} />
-                  {item.title}
-                </h3>
-                <p style={{
-                  color: 'var(--text-muted)',
-                  fontSize: '0.82rem',
-                  lineHeight: 1.4,
-                  opacity: 0.9
-                }}>
-                  {item.desc}
-                </p>
+                  {item.subcategory ? `${item.category} / ${item.subcategory}` : item.category}
+                </span>
+
+                {/* Details Overlay (animated from bottom) */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '20px 20px',
+                  zIndex: 2,
+                  transform: 'translateY(10px)',
+                  transition: 'var(--transition-smooth)'
+                }} className="gallery-details">
+                  <h3 style={{
+                    color: '#fff',
+                    fontSize: '1.2rem',
+                    fontFamily: 'var(--font-title)',
+                    marginBottom: '6px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <Camera size={18} className="glow-cyan" style={{ color: 'var(--accent-cyan)' }} />
+                    {item.title}
+                  </h3>
+                  <p style={{
+                    color: 'var(--text-muted)',
+                    fontSize: '0.82rem',
+                    lineHeight: 1.4,
+                    opacity: 0.9
+                  }}>
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

@@ -137,6 +137,24 @@ function Home() {
         }}>
           {/* Left Text Column */}
           <div className="hero-text-column" style={{ zIndex: 2 }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 16px',
+              borderRadius: '50px',
+              background: 'rgba(255, 0, 127, 0.1)',
+              border: '1px solid rgba(255, 0, 127, 0.2)',
+              marginBottom: '20px',
+              color: 'var(--accent-magenta)',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase'
+            }} className="tagline-badge">
+              <Sparkles size={14} />
+              Celebrates Yours Precious Moment With Us
+            </div>
             <h1 style={{
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               lineHeight: 1.1,
@@ -1178,7 +1196,7 @@ function Home() {
             letterSpacing: '0.02em',
             textShadow: '0 0 30px rgba(0, 240, 255, 0.15)'
           }}>
-            "Enjoy Your Precious Moment With Us"
+            "Celebrates Yours Precious Moment With Us"
           </h2>
         </div>
         <div style={{

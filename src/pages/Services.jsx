@@ -86,6 +86,19 @@ function Services() {
         
         {/* Header Block */}
         <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <div style={{ display: 'inline-flex', justifyContent: 'center', marginBottom: '15px' }}>
+            <Calendar className="glow-cyan" size={40} style={{ color: 'var(--accent-cyan)' }} />
+          </div>
+          <p style={{
+            color: 'var(--accent-magenta)',
+            fontSize: '0.9rem',
+            fontWeight: 600,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            marginBottom: '15px'
+          }}>
+            Celebrates Yours Precious Moment With Us
+          </p>
           <h1 style={{ fontSize: '3rem', marginBottom: '15px', fontFamily: 'var(--font-title)' }}>
             Get In <span className="text-gradient">Touch</span>
           </h1>
