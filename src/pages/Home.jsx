@@ -68,14 +68,16 @@ function Home() {
       title: "Concert-Grade Sound",
       desc: "Premium, high-fidelity sound rigs (QSC, L-Acoustics) calibrated for rich bass and crystal-clear vocals in any venue size.",
       color: "var(--accent-cyan)",
-      image: "/wedding_dj.png"
+      image: "/wedding_dj.png",
+      filter: "Backline"
     },
     {
       icon: Sparkles,
       title: "DMX Intelligent Lights",
       desc: "Choreographed dancefloor moving heads, washes, lasers, and vertical fog machines synced directly with the beats.",
       color: "var(--accent-magenta)",
-      image: "/festival_stage.png"
+      image: "/festival_stage.png",
+      filter: "Couple Entry"
     },
     {
       icon: Award,
@@ -83,7 +85,8 @@ function Home() {
       desc: "No pre-recorded playlists. Live vinyl mixing, transitions, and multi-genre sets customized to current crowd energy.",
       color: "var(--accent-purple)",
       image: "/live_mixing_feature.jpg",
-      objectPosition: "right center"
+      objectPosition: "right center",
+      filter: "Barat"
     }
   ];
 
@@ -272,12 +275,20 @@ function Home() {
             {features.map((feat, index) => {
               const IconComponent = feat.icon;
               return (
-                <div key={index} className="glass-card" style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  overflow: 'hidden',
-                  cursor: 'default'
-                }}>
+                <Link 
+                  key={index} 
+                  to="/gallery" 
+                  state={{ filter: feat.filter }}
+                  className="glass-card" 
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    color: 'inherit'
+                  }}
+                >
                   {/* Card Image Header */}
                   <div style={{
                     width: '100%',
@@ -321,7 +332,7 @@ function Home() {
                     </div>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>{feat.desc}</p>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

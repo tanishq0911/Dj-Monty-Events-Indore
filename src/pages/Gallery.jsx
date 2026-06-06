@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Camera, Music, Play, Layers } from 'lucide-react';
 
 function Gallery() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const location = useLocation();
+  const initialFilter = location.state?.filter || 'All';
+  const [activeFilter, setActiveFilter] = useState(initialFilter);
+
+  React.useEffect(() => {
+    if (location.state?.filter) {
+      setActiveFilter(location.state.filter);
+    }
+  }, [location.state]);
 
   const categories = ['All', 'Barat', 'Wedding', 'Couple Entry', 'Backline', 'Vintage Car', 'Punjabi Dhol'];
 
