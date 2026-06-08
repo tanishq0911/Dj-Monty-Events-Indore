@@ -50,6 +50,14 @@ function Services() {
         message: `Subject: ${formData.subject || 'General Inquiry'}\n\nMessage: ${formData.message}`
       };
 
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
       let data = {};
       const contentType = response.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
