@@ -50,6 +50,11 @@ function Navbar() {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }
+    } else if (link.path === '/') {
+      if (location.pathname === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
     setIsOpen(false);
   };
@@ -72,8 +77,54 @@ function Navbar() {
         alignItems: 'center'
       }}>
         {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-title)' }}>
-          <Music className="glow-cyan" size={28} />
+        <Link 
+          to="/" 
+          onClick={(e) => {
+            if (location.pathname === '/') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            setIsOpen(false);
+          }}
+          style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-title)' }}
+        >
+          <div style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '38px',
+            height: '38px',
+            borderRadius: '50%',
+            padding: '1.5px',
+            background: 'var(--accent-gradient)',
+            backgroundSize: '200% auto',
+            animation: 'gradientFlow 6s linear infinite',
+            boxShadow: '0 0 12px rgba(212, 175, 55, 0.3)'
+          }}>
+            <div style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              background: '#12101a',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <img 
+                src="/logo.png" 
+                alt="DJ Monty Events Logo" 
+                style={{ 
+                  height: '80%', 
+                  width: '80%', 
+                  objectFit: 'contain',
+                  display: 'block',
+                  borderRadius: '50%'
+                }} 
+              />
+            </div>
+          </div>
           <span className="text-gradient">Dj Monty Events</span>
         </Link>
 

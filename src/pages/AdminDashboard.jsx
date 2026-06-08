@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, LogOut, Trash2, Check, X, RefreshCw, BarChart2, Calendar, Users, DollarSign } from 'lucide-react';
+import { Lock, LogOut, Trash2, Check, X, RefreshCw, BarChart2, Calendar, Users, IndianRupee } from 'lucide-react';
 
 function AdminDashboard() {
   const [password, setPassword] = useState('');
@@ -22,13 +22,13 @@ function AdminDashboard() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     // Simple password check for administration
-    if (password === 'admin123' || password === 'djmonty') {
+    if (password === 'dj@monty') {
       setIsAuthenticated(true);
       setLoginError('');
       // Save auth in sessionStorage
       sessionStorage.setItem('admin_auth', 'true');
     } else {
-      setLoginError('Invalid Administrator Password. Try "djmonty"');
+      setLoginError('Invalid Administrator Password.');
     }
   };
 
@@ -77,10 +77,10 @@ function AdminDashboard() {
 
       // Estimate revenue based on booking packages
       if (booking.status !== 'Cancelled') {
-        if (booking.eventType === 'Wedding') estRevenue += 1200;
-        else if (booking.eventType === 'Festival') estRevenue += 2200;
-        else if (booking.eventType === 'Club') estRevenue += 600;
-        else estRevenue += 800; // other types average
+        if (booking.eventType === 'Wedding') estRevenue += 50000;
+        else if (booking.eventType === 'Festival') estRevenue += 100000;
+        else if (booking.eventType === 'Club') estRevenue += 25000;
+        else estRevenue += 35000; // other types average
       }
     });
 
@@ -196,7 +196,7 @@ function AdminDashboard() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-input" 
-              placeholder="Enter Password (hint: djmonty)"
+              placeholder="Enter Password"
               required
               autoFocus
               style={{ textAlign: 'center' }}
@@ -291,11 +291,11 @@ function AdminDashboard() {
 
           <div className="glass-card" style={{ padding: '25px 20px', display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ background: 'rgba(255, 0, 127, 0.08)', padding: '12px', borderRadius: '12px', color: 'var(--accent-magenta)' }}>
-              <DollarSign size={24} />
+              <IndianRupee size={24} />
             </div>
             <div>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Est. Projected Revenue</p>
-              <h3 style={{ fontSize: '1.6rem', color: 'var(--text-main)', fontFamily: 'var(--font-title)' }}>${stats.estRevenue}</h3>
+              <h3 style={{ fontSize: '1.6rem', color: 'var(--text-main)', fontFamily: 'var(--font-title)' }}>₹{stats.estRevenue.toLocaleString('en-IN')}</h3>
             </div>
           </div>
         </div>

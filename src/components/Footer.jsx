@@ -22,8 +22,44 @@ function Footer() {
       }}>
         {/* Brand Block */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-            <Music className="glow-cyan" size={24} style={{ color: 'var(--accent-cyan)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+            <div style={{
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '36px',
+              borderRadius: '50%',
+              padding: '1.5px',
+              background: 'var(--accent-gradient)',
+              backgroundSize: '200% auto',
+              animation: 'gradientFlow 6s linear infinite',
+              boxShadow: '0 0 10px rgba(212, 175, 55, 0.3)'
+            }}>
+              <div style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                background: '#12101a',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <img 
+                  src="/logo.png" 
+                  alt="DJ Monty Events Logo" 
+                  style={{ 
+                    height: '80%', 
+                    width: '80%', 
+                    objectFit: 'contain',
+                    display: 'block',
+                    borderRadius: '50%'
+                  }} 
+                />
+              </div>
+            </div>
             <span style={{ fontSize: '1.4rem', fontWeight: 800, fontFamily: 'var(--font-title)', color: 'var(--text-main)' }} className="text-gradient">Dj Monty Events</span>
           </div>
           <p style={{ fontSize: '0.9rem', lineHeight: 1.7, marginBottom: '15px' }}>
