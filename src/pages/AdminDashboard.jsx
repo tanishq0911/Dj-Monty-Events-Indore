@@ -45,7 +45,18 @@ function AdminDashboard() {
     setFetchError('');
     try {
       const response = await fetch('/api/bookings');
-      const data = await response.json();
+      let data = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        if (text.includes('Connection refused') || response.status === 502 || response.status === 504 || response.status === 500) {
+          throw new Error(`Database connection or backend error (Status ${response.status}). Please verify your MongoDB URI and Vercel configuration.`);
+        } else {
+          throw new Error(`Server error (Status ${response.status}): ${text.substring(0, 100)}...`);
+        }
+      }
       if (response.ok) {
         setBookings(data.data);
         calculateStats(data.data);
@@ -54,7 +65,7 @@ function AdminDashboard() {
       }
     } catch (err) {
       console.error(err);
-      setFetchError('Connection failed. Ensure your Express server is running locally.');
+      setFetchError(err.message || 'Connection failed. Please check backend server configuration.');
     } finally {
       setLoading(false);
     }

@@ -50,15 +50,19 @@ function Services() {
         message: `Subject: ${formData.subject || 'General Inquiry'}\n\nMessage: ${formData.message}`
       };
 
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await response.json();
+      let data = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        // Check for common Vercel/DB network error patterns in HTML
+        if (text.includes('Connection refused') || response.status === 502 || response.status === 504 || response.status === 500) {
+          throw new Error(`Database connection or backend error (Status ${response.status}). Please verify your MongoDB URI and Vercel configuration.`);
+        } else {
+          throw new Error(`Server error (Status ${response.status}): ${text.substring(0, 100)}...`);
+        }
+      }
 
       if (response.ok) {
         setSuccess(true);
@@ -74,7 +78,7 @@ function Services() {
       }
     } catch (err) {
       console.error('API Error:', err);
-      setError('Connection refused. Is the backend server running?');
+      setError(err.message || 'Connection refused. Is the backend server running?');
     } finally {
       setLoading(false);
     }

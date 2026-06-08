@@ -8,14 +8,25 @@ import Booking from './models/Booking.js';
 // Load environment variables
 dotenv.config();
 
-// Connect to Database
-connectDB();
-
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Database connection middleware
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('Database connection error in middleware:', err);
+    res.status(500).json({
+      success: false,
+      error: `Database connection failed: ${err.message}. Please verify your MONGODB_URI settings and MongoDB Atlas IP access list (0.0.0.0/0).`
+    });
+  }
+});
 
 // Routes
 // 1. Health Check

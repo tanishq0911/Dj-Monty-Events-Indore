@@ -29,10 +29,7 @@ const connectDB = async () => {
   } catch (error) {
     cached.promise = null;
     console.error(`Error connecting to MongoDB: ${error.message}`);
-    // exit process only if in production
-    if (process.env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    // throw the error to be handled by middleware
     throw error;
   }
 
